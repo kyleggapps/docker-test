@@ -18,6 +18,12 @@ ENV APP_HOME /dockertest
 RUN mkdir $APP_HOME
 WORKDIR $APP_HOME
 
+
+RUN apt-get update
+RUN gem install rubygems-update --no-ri --no-rdoc
+RUN update_rubygems
+RUN gem install bundler --no-ri --no-rdoc
+
 ADD Gemfile* $APP_HOME/
 RUN bundle install
 
